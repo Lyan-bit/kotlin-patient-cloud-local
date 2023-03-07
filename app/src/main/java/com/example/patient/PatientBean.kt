@@ -1,0 +1,129 @@
+package com.example.patient
+
+import android.content.Context
+import java.lang.Exception
+
+class PatientBean(c: Context) {
+
+    private var model: ModelFacade = ModelFacade.getInstance(c)
+
+    private var patientId = ""
+    private var name = ""
+    private var appointmentId = ""
+
+    private var errors = ArrayList<String>()
+
+    fun setPatientId(patientIdx: String) {
+	 patientId = patientIdx
+    }
+    
+    fun setName(namex: String) {
+	 name = namex
+    }
+    
+    fun setAppointmentId(appointmentIdx: String) {
+	 appointmentId = appointmentIdx
+    }
+    
+
+
+    fun resetData() {
+	  patientId = ""
+	  name = ""
+	  appointmentId = ""
+    }
+    
+    fun isCreatePatientError(): Boolean {
+	        
+	        errors.clear()
+	        
+          if (patientId != "") {
+	//validate
+}
+	         else {
+	               errors.add("patientId cannot be empty")
+	         }
+	          if (name != "") {
+	//validate
+}
+	         else {
+	               errors.add("name cannot be empty")
+	         }
+	          if (appointmentId != "") {
+	//validate
+}
+	         else {
+	               errors.add("appointmentId cannot be empty")
+	         }
+	
+	        return errors.size > 0
+	    }
+	    
+	    fun createPatient() {
+	        model.createPatient(PatientVO(patientId, name, appointmentId))
+	        resetData()
+	    }
+	   
+     fun editPatient() {
+		     model.editPatient(PatientVO(patientId, name, appointmentId))
+		     resetData()
+		 }
+		       
+		 fun isEditPatientError(allPatientpatientIds: List<String>): Boolean {
+       
+       errors.clear()
+			
+			if (!allPatientpatientIds.contains(patientId)) {
+				errors.add("The patientId is not exist")
+		    }
+          if (patientId != "") {
+	//validate
+}
+	         else {
+	               errors.add("patientId cannot be empty")
+	         }
+          if (name != "") {
+	//validate
+}
+	         else {
+	               errors.add("name cannot be empty")
+	         }
+          if (appointmentId != "") {
+	//validate
+}
+	         else {
+	               errors.add("appointmentId cannot be empty")
+	         }
+
+       return errors.size > 0
+   }
+       
+   fun deletePatient() {
+       model.deletePatient(patientId)
+       resetData()
+   }
+   
+   fun isDeletePatientError(allPatientpatientIds: List<String>): Boolean {
+        errors.clear()
+			 if (!allPatientpatientIds.contains(patientId)) {
+			    errors.add("The patientId is not exist")
+        }
+        return errors.size > 0
+		}    
+
+		fun isSearchPatientIdError(allPatientIds: List<String>): Boolean {
+    	   errors.clear()
+   	       if (!allPatientIds.contains(patientId)) {
+    	       errors.add("The patientId is not exist")
+    	   }
+           return errors.size > 0
+    }
+
+    fun errors(): String {
+        return errors.toString()
+    }
+
+
+
+}
+
