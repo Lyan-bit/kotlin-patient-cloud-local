@@ -38,6 +38,7 @@ class FirebaseDB() {
                     locals.addAll(Patient.PatientAllInstances)
                     for (x in locals) {
                         if (keys.contains(x.patientId)) {
+                            //check
                         } else {
                             Patient.killPatient(x.patientId)
                         }
