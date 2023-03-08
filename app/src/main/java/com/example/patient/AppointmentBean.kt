@@ -118,6 +118,7 @@ class AppointmentBean(c: Context) {
 
    fun isAddPatientattendsAppointmentError(): Boolean {
         errors.clear()
+	//if statement
         return errors.size > 0
     }
 
@@ -128,6 +129,7 @@ class AppointmentBean(c: Context) {
     
    fun isRemovePatientattendsAppointmentError(): Boolean {
         errors.clear()
+		//remove statement
         return errors.size > 0
     }
 
