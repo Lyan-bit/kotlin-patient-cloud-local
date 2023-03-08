@@ -1,7 +1,6 @@
 package com.example.patient
 
 import android.content.Context
-import java.lang.Exception
 
 class AppointmentBean(c: Context) {
 
