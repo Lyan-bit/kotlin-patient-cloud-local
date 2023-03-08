@@ -81,6 +81,7 @@ class PatientDAO {
           for (item in rows.indices) {
               val row = rows[item]
               if (row == null || row.trim { it <= ' ' }.length == 0) {
+                  //check
               } else {
                   val x: Patient? = parseCSV(row)
                   if (x != null) {
@@ -108,6 +109,7 @@ class PatientDAO {
                         }
                     }
                 } catch (e: Exception) {
+                    e.printStackTrace()
                 }
             }
             return res
@@ -153,10 +155,12 @@ class PatientDAO {
                 val ex: Patient = es[i]
                 val jx = writeJSON(ex)
                 if (jx == null) {
+                    //jx
                 } else {
                     try {
                         result.put(jx)
                     } catch (ee: Exception) {
+                        ee.printStackTrace()
                     }
                 }
             }
