@@ -11,8 +11,8 @@ class AppointmentBean(c: Context) {
     private var patientId = ""
 
     private var errors = ArrayList<String>()
-    private var checkParameter = "is not exist"
-    private var checkEmpty = "cannot be empty"
+    private var checkParameter = " is not exist"
+    private var checkEmpty = " cannot be empty"
 
     fun setAppointmentId(appointmentIdx: String) {
 	 appointmentId = appointmentIdx
@@ -40,13 +40,13 @@ class AppointmentBean(c: Context) {
 	//validate
 }
 	else {
-	 	  errors.add("appointmentId " + checkEmpty)
+	 	  errors.add(appointmentId + checkEmpty)
 	}
           if (code != "") {
 	//validate
 }
 	else {
-	 	  errors.add("code " + checkEmpty)
+	 	  errors.add(code + checkEmpty)
 	}
 
 	        return errors.size > 0
@@ -73,19 +73,19 @@ class AppointmentBean(c: Context) {
 	        errors.clear()
 			
 			if (!allAppointmentappointmentIds.contains(appointmentId)) {
-				errors.add("appointmentId" + checkParameter)
+				errors.add(appointmentId + checkParameter)
 		    }
 			          if (appointmentId != "") {
 	        	//validate
 	        }
 	         else {
-	               errors.add("appointmentId " + checkEmpty)
+	               errors.add(appointmentId + checkEmpty)
 	         }
 	                  if (code != "") {
 	        	//validate
 	        }
 	         else {
-	               errors.add("code " + checkEmpty)
+	               errors.add(code + checkEmpty)
 	         }
 	        
        return errors.size > 0
@@ -99,7 +99,7 @@ class AppointmentBean(c: Context) {
 	    fun isDeleteAppointmentError(allAppointmentappointmentIds: List<String>): Boolean {
 	         errors.clear()
 			 if (!allAppointmentappointmentIds.contains(appointmentId)) {
-			    errors.add("appointmentId" + checkParameter)
+			    errors.add(appointmentId + checkParameter)
 	         }
 	         return errors.size > 0
 		}    
@@ -108,7 +108,7 @@ class AppointmentBean(c: Context) {
 		fun isSearchAppointmentIdError(allAppointmentIds: List<String>): Boolean {
     	   errors.clear()
    	       if (!allAppointmentIds.contains(appointmentId)) {
-    	       errors.add("appointmentId" + checkParameter)
+    	       errors.add(appointmentId + checkParameter)
     	   }
            return errors.size > 0
     }
@@ -122,12 +122,12 @@ class AppointmentBean(c: Context) {
 	if (appointmentId != "" ) {
 		   //ok
 	   } else
-		   errors.add("appointmentId " + checkEmpty)
+		   errors.add(appointmentId + checkEmpty)
 
 	if ( patientId != "") {
 		   //ok
 	   } else
-		   errors.add("patientId " + checkEmpty)
+		   errors.add(patientId + checkEmpty)
         return errors.size > 0
     }
 
@@ -141,12 +141,12 @@ class AppointmentBean(c: Context) {
 	if (appointmentId != "" ) {
 		   //ok
 	   } else
-		   errors.add("appointmentId " + checkEmpty)
+		   errors.add(appointmentId + checkEmpty)
 
 	if ( patientId != "" && patientId != "Null") {
 		   //ok
 	   } else
-		   errors.add("patientId " + checkEmpty)
+		   errors.add(patientId + checkEmpty)
         return errors.size > 0
     }
 
