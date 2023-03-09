@@ -12,6 +12,7 @@ class AppointmentBean(c: Context) {
 
     private var errors = ArrayList<String>()
     private var checkParameter = "is not exist"
+    private var checkEmpty = "cannot be empty"
 
     fun setAppointmentId(appointmentIdx: String) {
 	 appointmentId = appointmentIdx
@@ -39,13 +40,13 @@ class AppointmentBean(c: Context) {
 	//validate
 }
 	else {
-	 	  errors.add("appointmentId cannot be empty")
+	 	  errors.add("appointmentId " + checkEmpty)
 	}
           if (code != "") {
 	//validate
 }
 	else {
-	 	  errors.add("code cannot be empty")
+	 	  errors.add("code " + checkEmpty)
 	}
 
 	        return errors.size > 0
@@ -78,13 +79,13 @@ class AppointmentBean(c: Context) {
 	        	//validate
 	        }
 	         else {
-	               errors.add("appointmentId cannot be empty")
+	               errors.add("appointmentId " + checkEmpty)
 	         }
 	                  if (code != "") {
 	        	//validate
 	        }
 	         else {
-	               errors.add("code cannot be empty")
+	               errors.add("code " + checkEmpty)
 	         }
 	        
        return errors.size > 0
@@ -121,12 +122,12 @@ class AppointmentBean(c: Context) {
 	if (appointmentId != "" ) {
 		   //ok
 	   } else
-		   errors.add("appointmentId cannot be empty")
+		   errors.add("appointmentId " + checkEmpty)
 
 	if ( patientId != "") {
 		   //ok
 	   } else
-		   errors.add("patientId cannot be empty")
+		   errors.add("patientId " + checkEmpty)
         return errors.size > 0
     }
 
@@ -140,12 +141,12 @@ class AppointmentBean(c: Context) {
 	if (appointmentId != "" ) {
 		   //ok
 	   } else
-		   errors.add("appointmentId cannot be empty")
+		   errors.add("appointmentId " + checkEmpty)
 
 	if ( patientId != "" && patientId != "Null") {
 		   //ok
 	   } else
-		   errors.add("patientId cannot be empty")
+		   errors.add("patientId " + checkEmpty)
         return errors.size > 0
     }
 
