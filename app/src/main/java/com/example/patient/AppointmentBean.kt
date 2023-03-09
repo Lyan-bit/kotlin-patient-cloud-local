@@ -118,7 +118,15 @@ class AppointmentBean(c: Context) {
 
    fun isAddPatientattendsAppointmentError(): Boolean {
         errors.clear()
-	//if statement
+	if (appointmentId != "" ) {
+		   //ok
+	   } else
+		   errors.add("appointmentId cannot be empty")
+
+	if ( patientId != "") {
+		   //ok
+	   } else
+		   errors.add("patientId cannot be empty")
         return errors.size > 0
     }
 
@@ -129,7 +137,15 @@ class AppointmentBean(c: Context) {
     
    fun isRemovePatientattendsAppointmentError(): Boolean {
         errors.clear()
-		//remove statement
+	if (appointmentId != "" ) {
+		   //ok
+	   } else
+		   errors.add("appointmentId cannot be empty")
+
+	if ( patientId != "") {
+		   //ok
+	   } else
+		   errors.add("patientId cannot be empty")
         return errors.size > 0
     }
 
