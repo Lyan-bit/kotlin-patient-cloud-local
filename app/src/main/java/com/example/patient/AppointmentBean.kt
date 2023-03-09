@@ -142,7 +142,7 @@ class AppointmentBean(c: Context) {
 	   } else
 		   errors.add("appointmentId cannot be empty")
 
-	if ( patientId != "") {
+	if ( patientId != "" && patientId != "Null") {
 		   //ok
 	   } else
 		   errors.add("patientId cannot be empty")
