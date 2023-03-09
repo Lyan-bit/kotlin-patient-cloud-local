@@ -74,15 +74,15 @@ class CreatePatientFragment : Fragment(), View.OnClickListener {
 		}
 		when (v?.id) {
 			R.id.crudPatientOK-> {
-				crudPatientOK()
+				createPatientOK()
 			}
 			R.id.crudPatientCancel-> {
-				crudPatientCancel()
+				createPatientCancel()
 			}
 		}
 	}
 
-	private fun crudPatientOK () {
+	private fun createPatientOK () {
 		patientIdData = patientIdTextField.text.toString()
 		patientBean.setPatientId(patientIdData)
 		nameData = nameTextField.text.toString()
@@ -99,7 +99,7 @@ class CreatePatientFragment : Fragment(), View.OnClickListener {
 			}
 	}
 
-	private fun crudPatientCancel () {
+	private fun createPatientCancel () {
 		patientBean.resetData()
 		patientIdTextField.setText("")
 		nameTextField.setText("")
