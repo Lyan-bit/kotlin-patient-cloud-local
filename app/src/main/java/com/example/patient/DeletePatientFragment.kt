@@ -84,15 +84,15 @@ class DeletePatientFragment : Fragment(), View.OnClickListener, AdapterView.OnIt
 
 	when (v?.id) {
 		R.id.crudPatientOK-> {
-			crudPatientOK()
+			deletePatientOK()
 		}
 		R.id.crudPatientCancel-> {
-			crudPatientCancel()
+			deletePatientCancel()
 		}
 	  }
     }
 
-	private fun crudPatientOK() {
+	private fun deletePatientOK() {
 		patientIdData = patientIdTextField.text.toString()
 		patientBean.setPatientId(patientIdData)
 		if (patientBean.isDeletePatientError(allPatientpatientIds)) {
@@ -104,7 +104,7 @@ class DeletePatientFragment : Fragment(), View.OnClickListener, AdapterView.OnIt
 		}
 	}
 
-	private fun crudPatientCancel() {
+	private fun deletePatientCancel() {
 		patientBean.resetData()
 		patientIdTextField.setText("")
 	}
