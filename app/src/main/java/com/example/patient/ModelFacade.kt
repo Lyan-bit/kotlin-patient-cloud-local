@@ -28,14 +28,6 @@ class ModelFacade private constructor(context: Context) {
         }
     }
     
-	/* This metatype code requires OclType.java, OclAttribute.java, OclOperation.java */
-	fun initialiseOclTypes() {
-			val patientOclType: OclType = OclType.createByPKOclType("Patient")
-		patientOclType.setMetatype(Patient::class.java)
-		    val appointmentOclType: OclType = OclType.createByPKOclType("Appointment")
-		appointmentOclType.setMetatype(Appointment::class.java)
-    }
-    
     fun createPatient(x: PatientVO) { 
 			  editPatient(x)
 	}
