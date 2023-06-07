@@ -54,7 +54,7 @@ class PatientBean(c: Context) {
 	               errors.add("appointmentId cannot be empty")
 	         }
 	
-	        return errors.size > 0
+	        return errors.isNotEmpty()
 	    }
 	    
 	    fun createPatient() {
@@ -93,7 +93,7 @@ class PatientBean(c: Context) {
 	               errors.add("appointmentId cannot be empty")
 	         }
 
-       return errors.size > 0
+       return errors.isNotEmpty()
    }
        
    fun deletePatient() {
@@ -106,7 +106,7 @@ class PatientBean(c: Context) {
 			 if (!allPatientpatientIds.contains(patientId)) {
 			    errors.add("patientId" + checkParameter)
         }
-        return errors.size > 0
+        return errors.isNotEmpty()
 		}    
 
 		fun isSearchPatientIdError(allPatientIds: List<String>): Boolean {
@@ -114,7 +114,7 @@ class PatientBean(c: Context) {
    	       if (!allPatientIds.contains(patientId)) {
     	       errors.add("patientId" + checkParameter)
     	   }
-           return errors.size > 0
+           return errors.isNotEmpty()
     }
 
     fun errors(): String {
