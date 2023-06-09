@@ -7,8 +7,8 @@ import java.util.ArrayList
 class ModelFacade private constructor(context: Context) {
 
     private var cdb: FirebaseDB = FirebaseDB.getInstance()
-    private var db: DB
-    private var fileSystem: FileAccessor
+    private val db: DB by lazy { DB(context, null) } 
+    private val fileSystem: FileAccessor by lazy { FileAccessor(context) }
 
     private var currentPatient: PatientVO? = null
     private var currentPatients: ArrayList<PatientVO> = ArrayList()
@@ -17,8 +17,6 @@ class ModelFacade private constructor(context: Context) {
 
     init {
     	//init
-        db = DB(context, null)
-        fileSystem = FileAccessor(context)
 	}
 
     companion object {
@@ -33,14 +31,14 @@ class ModelFacade private constructor(context: Context) {
 	}
 				    
     fun editPatient(x: PatientVO) {
-		var obj = getPatientByPK(x.getPatientId())
+		var obj = getPatientByPK(x.patientId)
 		if (obj == null) {
-			obj = Patient.createByPKPatient(x.getPatientId())
+			obj = Patient.createByPKPatient(x.patientId)
 		}
 			
-		  obj.patientId = x.getPatientId()
-		  obj.name = x.getName()
-		  obj.appointmentId = x.getAppointmentId()
+		  obj.patientId = x.patientId
+		  obj.name = x.name
+		  obj.appointmentId = x.appointmentId
 		cdb.persistPatient(obj)
 		currentPatient = x
 	}
@@ -110,9 +108,9 @@ class ModelFacade private constructor(context: Context) {
 		var res = ArrayList<Appointment>()
 			for (x in currentAppointments.indices) {
 					val vo: AppointmentVO = currentAppointments[x]
-				    val itemx = Appointment.createByPKAppointment(vo.getAppointmentId())
-	            itemx.appointmentId = vo.getAppointmentId()
-            itemx.code = vo.getCode()
+				    val itemx = Appointment.createByPKAppointment(vo.appointmentId)
+	            itemx.appointmentId = vo.appointmentId
+            itemx.code = vo.code
 			res.add(itemx)
 		}
 		return res
@@ -134,8 +132,8 @@ class ModelFacade private constructor(context: Context) {
 	        } else {
 	            val vo: AppointmentVO = res[0]
 	            val itemx = Appointment.createByPKAppointment(value)
-            itemx.appointmentId = vo.getAppointmentId()
-            itemx.code = vo.getCode()
+            itemx.appointmentId = vo.appointmentId
+            itemx.code = vo.code
 	            itemx
 	        }
     }
@@ -148,7 +146,7 @@ class ModelFacade private constructor(context: Context) {
         currentAppointments = db.listAppointment()
         val res: ArrayList<String> = ArrayList()
             for (appointment in currentAppointments.indices) {
-                res.add(currentAppointments[appointment].getAppointmentId())
+                res.add(currentAppointments[appointment].appointmentId)
             }
         return res
     }
@@ -171,7 +169,7 @@ class ModelFacade private constructor(context: Context) {
 	
 
 	    	fun listPatient(): ArrayList<PatientVO> {
-		  val patients: ArrayList<Patient> = Patient.PatientAllInstances
+		  val patients: ArrayList<Patient> = Patient.patientAllInstances
 		  currentPatients.clear()
 		  for (i in patients.indices) {
 		       currentPatients.add(PatientVO(patients[i]))
@@ -181,7 +179,7 @@ class ModelFacade private constructor(context: Context) {
 	}
 	
 	fun listAllPatient(): ArrayList<Patient> {
-		  val patients: ArrayList<Patient> = Patient.PatientAllInstances    
+		  val patients: ArrayList<Patient> = Patient.patientAllInstances    
 		  return patients
 	}
 	
@@ -196,7 +194,7 @@ class ModelFacade private constructor(context: Context) {
     }
 
     fun getPatientByPK(value: String): Patient? {
-        return Patient.PatientIndex[value]
+        return Patient.patientIndex[value]
     }
     
     fun retrievePatient(value: String): Patient? {
@@ -206,7 +204,7 @@ class ModelFacade private constructor(context: Context) {
     fun allPatientPatientIds(): ArrayList<String> {
         val res: ArrayList<String> = ArrayList()
             for (x in currentPatients.indices) {
-                res.add(currentPatients[x].getPatientId())
+                res.add(currentPatients[x].patientId)
             }
         return res
     }
@@ -227,5 +225,5 @@ class ModelFacade private constructor(context: Context) {
         currentPatient = vo
     }
 
-		
+	
 }
