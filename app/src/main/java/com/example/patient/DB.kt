@@ -50,10 +50,7 @@ private val appointmentCreateSchema =
             database.query(appointmentTableName, appointmentCols, null, null, null, null, null)
         cursor.moveToFirst()
         while (!cursor.isAfterLast()) {
-            val appointmentvo = AppointmentVO()
-            appointmentvo.setAppointmentId(cursor.getString(appointmentColAppointmentId))
-            appointmentvo.setCode(cursor.getString(appointmentColCode))
-            res.add(appointmentvo)
+            res.add(setDataAppointment(cursor))
             cursor.moveToNext()
         }
         cursor.close()
@@ -62,10 +59,7 @@ private val appointmentCreateSchema =
 
     fun createAppointment(appointmentvo: AppointmentVO) {
         database = writableDatabase
-        val wr = ContentValues(appointmentNumberCols)
-        wr.put(appointmentCols[appointmentColAppointmentId], appointmentvo.getAppointmentId())
-        wr.put(appointmentCols[appointmentColCode], appointmentvo.getCode())
-        database.insert(appointmentTableName, appointmentCols[1], wr)
+        database.insert(appointmentTableName, appointmentCols[1], putDataAppointment(appointmentvo))
     }
 
     fun searchByAppointmentappointmentId(value: String): ArrayList<AppointmentVO> {
@@ -78,10 +72,7 @@ private val appointmentCreateSchema =
 	        )
 	        cursor.moveToFirst()
 	        while (!cursor.isAfterLast()) {
-	            val appointmentvo = AppointmentVO()
-	            appointmentvo.setAppointmentId(cursor.getString(appointmentColAppointmentId))
-	            appointmentvo.setCode(cursor.getString(appointmentColCode))
-	            res.add(appointmentvo)
+	            res.add(setDataAppointment(cursor))
 	            cursor.moveToNext()
 	        }
 	        cursor.close()
@@ -98,10 +89,7 @@ private val appointmentCreateSchema =
 	        )
 	        cursor.moveToFirst()
 	        while (!cursor.isAfterLast()) {
-	            val appointmentvo = AppointmentVO()
-	            appointmentvo.setAppointmentId(cursor.getString(appointmentColAppointmentId))
-	            appointmentvo.setCode(cursor.getString(appointmentColCode))
-	            res.add(appointmentvo)
+	            res.add(setDataAppointment(cursor))
 	            cursor.moveToNext()
 	        }
 	        cursor.close()
@@ -111,11 +99,8 @@ private val appointmentCreateSchema =
 
     fun editAppointment(appointmentvo: AppointmentVO) {
         database = writableDatabase
-        val wr = ContentValues(appointmentNumberCols)
-        wr.put(appointmentCols[appointmentColAppointmentId], appointmentvo.getAppointmentId())
-        wr.put(appointmentCols[appointmentColCode], appointmentvo.getCode())
-        val args = arrayOf(appointmentvo.getAppointmentId())
-        database.update(appointmentTableName, wr, "appointmentId =?", args)
+        val args = arrayOf(appointmentvo.appointmentId)
+        database.update(appointmentTableName, putDataAppointment(appointmentvo), "appointmentId =?", args)
     }
 
     fun deleteAppointment(value: String) {
@@ -124,4 +109,18 @@ private val appointmentCreateSchema =
         database.delete(appointmentTableName, "appointmentId = ?", args)
     }
 
+
+	private fun setDataAppointment(cursor: Cursor): AppointmentVO {
+		val appointmentvo = AppointmentVO()
+		    appointmentvo.appointmentId = cursor.getString(appointmentColAppointmentId)
+		    appointmentvo.code = cursor.getString(appointmentColCode)
+		return appointmentvo
+	}
+	
+	private fun putDataAppointment(appointmentvo: AppointmentVO): ContentValues {
+        val wr = ContentValues(appointmentNumberCols)
+        wr.put(appointmentCols[appointmentColAppointmentId], appointmentvo.appointmentId)
+        wr.put(appointmentCols[appointmentColCode], appointmentvo.code)
+		return wr
+	}
 }
