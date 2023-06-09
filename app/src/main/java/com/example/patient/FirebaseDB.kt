@@ -35,10 +35,10 @@ class FirebaseDB() {
                     }
                     // Delete local objects which are not in the cloud:
                     val locals = ArrayList<Patient>()
-                    locals.addAll(Patient.PatientAllInstances)
+                    locals.addAll(Patient.patientAllInstances)
                     for (x in locals) {
                         if (keys.contains(x.patientId)) {
-                            //check
+                        //check
                         } else {
                             Patient.killPatient(x.patientId)
                         }
@@ -55,7 +55,7 @@ class FirebaseDB() {
 
     fun persistPatient(ex: Patient) {
         val evo = PatientVO(ex)
-        val key = evo.getPatientId()
+        val key = evo.patientId
         if (database == null) {
             return
         }
