@@ -4,8 +4,8 @@ import java.util.ArrayList
 
 class AppointmentVO  {
 
-    private var appointmentId: String = ""
-    private var code: String = ""
+     var appointmentId: String = ""
+     var code: String = ""
 
     constructor() {
     	//constructor
@@ -33,23 +33,6 @@ class AppointmentVO  {
             res.add(list[i].toString())
         }
         return res
-    }
-    
-    fun getAppointmentId(): String {
-        return appointmentId
-    }
-    
-    fun getCode(): String {
-        return code
-    }
-    
-
-    fun setAppointmentId(x: String) {
-    	appointmentId = x
-    }
-    
-    fun setCode(x: String) {
-    	code = x
     }
     
 }
