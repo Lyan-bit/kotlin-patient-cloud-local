@@ -4,9 +4,9 @@ import java.util.ArrayList
 
 class PatientVO  {
 
-    private var patientId: String = ""
-    private var name: String = ""
-    private var appointmentId: String = ""
+     var patientId: String = ""
+     var name: String = ""
+     var appointmentId: String = ""
 
     constructor() {
     	//constructor
@@ -37,31 +37,6 @@ class PatientVO  {
             res.add(list[i].toString())
         }
         return res
-    }
-    
-    fun getPatientId(): String {
-        return patientId
-    }
-    
-    fun getName(): String {
-        return name
-    }
-    
-    fun getAppointmentId(): String {
-        return appointmentId
-    }
-    
-
-    fun setPatientId(x: String) {
-    	patientId = x
-    }
-    
-    fun setName(x: String) {
-    	name = x
-    }
-    
-    fun setAppointmentId(x: String) {
-    	appointmentId = x
     }
     
 }
