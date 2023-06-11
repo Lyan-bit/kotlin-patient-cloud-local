@@ -169,7 +169,7 @@ class ModelFacade private constructor(context: Context) {
 	
 
 	    	fun listPatient(): ArrayList<PatientVO> {
-		  val patients: ArrayList<Patient> = Patient.patientAllInstances
+		  val patients: ArrayList<Patient> = Patient.PatientAllInstances
 		  currentPatients.clear()
 		  for (i in patients.indices) {
 		       currentPatients.add(PatientVO(patients[i]))
@@ -179,7 +179,7 @@ class ModelFacade private constructor(context: Context) {
 	}
 	
 	fun listAllPatient(): ArrayList<Patient> {
-		  val patients: ArrayList<Patient> = Patient.patientAllInstances    
+		  val patients: ArrayList<Patient> = Patient.PatientAllInstances
 		  return patients
 	}
 	
@@ -194,7 +194,7 @@ class ModelFacade private constructor(context: Context) {
     }
 
     fun getPatientByPK(value: String): Patient? {
-        return Patient.patientIndex[value]
+        return Patient.PatientIndex[value]
     }
     
     fun retrievePatient(value: String): Patient? {
