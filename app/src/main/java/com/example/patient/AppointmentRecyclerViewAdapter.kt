@@ -25,8 +25,8 @@ class AppointmentRecyclerViewAdapter (items: List<AppointmentVO>, listener: List
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: AppointmentViewHolder, position: Int) {
         holder.mItem = mValues[position]
-        holder.listAppointmentAppointmentIdView.text = " " + mValues[position].getAppointmentId() + " "
-        holder.listAppointmentCodeView.text = " " + mValues[position].getCode() + " "
+        holder.listAppointmentAppointmentIdView.text = " " + mValues[position].appointmentId + " "
+        holder.listAppointmentCodeView.text = " " + mValues[position].code + " "
 
         holder.mView.setOnClickListener { mListener.onListAppointmentFragmentInteraction(holder.mItem) }
     }
