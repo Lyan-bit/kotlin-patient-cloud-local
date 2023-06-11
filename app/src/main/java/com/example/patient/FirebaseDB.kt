@@ -35,7 +35,7 @@ class FirebaseDB() {
                     }
                     // Delete local objects which are not in the cloud:
                     val locals = ArrayList<Patient>()
-                    locals.addAll(Patient.patientAllInstances)
+                    locals.addAll(Patient.PatientAllInstances)
                     for (x in locals) {
                         if (keys.contains(x.patientId)) {
                         //check
